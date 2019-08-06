@@ -1,0 +1,1545 @@
+{
+	"info": {
+		"_postman_id": "493aeb13-1361-4ca6-a4ff-d8578214937a",
+		"name": "team-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Manager signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Doh\",\n\t\"email\": \"john.doh@testmail.com\",\n\t\"password\": \"secret\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						},
+						"description": "It accepts json body with the information of the user that sends the register request (POST). \r\n\r\nRequired fields are the \"email\" and \"password\".\r\nOptional fields are \"firstName\" and \"lastName\".\r\n\r\nThe first name and last name should be at leas 3 characters long.\r\nThe email should be a valid email that is not already in the database.\r\nthe password should be at least 5 characters long.\r\n\r\nIt returns a json response with the user information and the token that the user can use for the next hour to send validaded requests.\r\nAfter the token is expired the user can login to get the new token."
+					},
+					"response": [
+						{
+							"name": "Manager signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Doh\",\n\t\"email\": \"john.doh@testmail.com\",\n\t\"password\": \"secret\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/auth/signup",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "497"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f1-QVBInmlXCFmyVAQk/5mJ13bCBek\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 12:11:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Manager account was created successfully!\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjMiLCJpYXQiOjE1NTgwOTUwOTYsImV4cCI6MTU1ODA5ODY5Nn0.5UQ1LkXkQ_GeKcv8N3OQJh8pI02KCCEqn16QMHZa-Lw\",\n    \"manager\": {\n        \"id\": 3,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doh\",\n        \"email\": \"john.doh@testmail.com\",\n        \"password\": \"$2a$12$xdSm2.bek5AO1HQKgFpd3e4bAK/KqM9Z7OnHUzYZnhAZecrcCc.Z.\",\n        \"updatedAt\": \"2019-05-17T12:11:36.173Z\",\n        \"createdAt\": \"2019-05-17T12:11:36.173Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Manager login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdGVzdC5ldSIsIm1hbmFnZXJJZCI6IjIiLCJpYXQiOjE1NTgwODg2MjgsImV4cCI6MTU1ODA5MjIyOH0.YrMEzb8uSGEQaWcf2pXbpK9-phWe6J59eC2CQbVhDN8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"john.doh2@testmail.com\",\n\t\"password\": \"newsecret\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Sends a login request (POST) with the credentials in json format on the body.\n\nReturns a json response with the authentication token (Bearer) that the user can use to send authenticated requests."
+					},
+					"response": [
+						{
+							"name": "Manager login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"john.doh@testmail.com\",\n\t\"password\": \"secret\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "478"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1de-S1OJpNnHV8eIQAJg5cQkT4VAyb4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 12:26:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"You are now logged in!\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjQiLCJpYXQiOjE1NTgwOTU5NzAsImV4cCI6MTU1ODA5OTU3MH0.mbvouIm6Cc6MoGtwzfK_HWsj8lUNw2ceHLIoJGnKFm8\",\n    \"manager\": {\n        \"id\": 4,\n        \"password\": \"$2a$12$HVUFQYSFaLXMK2HNzo7Vq.glLXq.V0WOyLC9JN9s4WVwfoodhoer6\",\n        \"email\": \"john.doh@testmail.com\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doh\",\n        \"createdAt\": \"2019-05-17T12:21:01.000Z\",\n        \"updatedAt\": \"2019-05-17T12:21:01.000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit manager's data",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Johnny\",\n\t\"lastName\": \"Dohh\",\n\t\"newEmail\": \"john.doh2@testmail.com\",\n\t\"password\": \"secret\",\n\t\"newPassword\": \"newsecret\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"edit"
+							]
+						},
+						"description": "Sends a PUT requests in json format that changes the logged in manager's data.\n\nRequires authentication token.\n\nThe \"password\" field is also required.\n\nReturns a json response with the new data."
+					},
+					"response": [
+						{
+							"name": "Edit manager's data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"Johnny\",\n\t\"lastName\": \"Dohh\",\n\t\"newEmail\": \"john.doh2@testmail.com\",\n\t\"password\": \"secret\",\n\t\"newPassword\": \"newsecret\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/edit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "290"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"122-UpLlfG79rXVr8Gh4HpXmNQFmA3M\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:06:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Manager data successfully updated\",\n    \"manager\": {\n        \"id\": 1,\n        \"password\": \"$2a$12$VKVQInFcLLkC3IhpYELCQ.JewHM7DKwtkLnrIq092OcK.tzZwiPFa\",\n        \"email\": \"john.doh2@testmail.com\",\n        \"firstName\": \"Johnny\",\n        \"lastName\": \"Dohh\",\n        \"createdAt\": \"2019-05-17T18:57:37.000Z\",\n        \"updatedAt\": \"2019-05-17T19:06:44.147Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete manager",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newsecret\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"delete"
+							]
+						},
+						"description": "Sends a DELETE request that deletes the logged in manager, his/her team and all that team's players.\n\nIt requires the manager's password.\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Delete manager",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"password\": \"newsecret\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/delete",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-ImIUZSHaMJpHGcaJWC44J/VF1yk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:19:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Manager was successfully deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "team",
+			"item": [
+				{
+					"name": "Create team",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"FirstTeam\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/team/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"team",
+								"create"
+							]
+						},
+						"description": "Sends a json request (POST) that contains the team name and returns the data of the registered team also in json format.\n\nIt requires the authentication token.\n\nThe \"name\" field must have at least 2 characters.\n\nEach manager can have only one team."
+					},
+					"response": [
+						{
+							"name": "Create team",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"FirstTeam\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/team/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"team",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-iV/JciKPf905yr39eCuAwdAyAbE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:08:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Team successfully created!\",\n    \"team\": {\n        \"id\": 1,\n        \"name\": \"FirstTeam\",\n        \"managerId\": \"1\",\n        \"updatedAt\": \"2019-05-17T19:08:13.163Z\",\n        \"createdAt\": \"2019-05-17T19:08:13.163Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get team's data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/manage/team/get",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"team",
+								"get"
+							]
+						},
+						"description": "Sends a GET request in json format.\nThe response is the stored data of the manager's team in json format.\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Get team's data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/manage/team/get",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"team",
+										"get"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-yDeyDrHRaVlLIE6Z2XXtqfOLH+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:09:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Team data successfully retrieved\",\n    \"team\": {\n        \"id\": 1,\n        \"name\": \"FirstTeam\",\n        \"createdAt\": \"2019-05-17T19:08:13.000Z\",\n        \"updatedAt\": \"2019-05-17T19:08:13.000Z\",\n        \"managerId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit team's data",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"FirstTeamEdited\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/team/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"team",
+								"edit"
+							]
+						},
+						"description": "sends a PUT request in json format that contains the new information of the team.\nThe response is a json with the new data.\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Edit team's data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"FirstTeamEdited\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/team/edit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"team",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-fIuGIP0zq+XwkoscVjBsFiNtcRg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:10:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Team data successfully updated\",\n    \"pteamlayer\": {\n        \"id\": 1,\n        \"name\": \"FirstTeamEdited\",\n        \"createdAt\": \"2019-05-17T19:08:13.000Z\",\n        \"updatedAt\": \"2019-05-17T19:10:05.301Z\",\n        \"managerId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete team",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/manage/team/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"team",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Sends a DELETE request that deletes the team that is linked to the logged in manager and all their players.\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Delete team",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/manage/team/delete",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"team",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-l6R/TI7Xx+AO938DB3W/JNiEIDI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:18:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Team data successfully deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "players",
+			"item": [
+				{
+					"name": "Create new player ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Jack\",\n\t\"lastName\": \"Dough\",\n\t\"age\": \"22\",\n\t\"position\": \"Goalkeeper\",\n\t\"otherInfo\": \"good player\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/player/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"player",
+								"create"
+							]
+						},
+						"description": "Sends a POST request in json format with the information of the player that is to be created.\nThe required fiends are \"firstName\" and \"lastName\".\nthe optional fiends are \"age\", \"position\" and \"otherInfo\".\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Create new player ",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"Jack\",\n\t\"lastName\": \"Dough\",\n\t\"age\": \"22\",\n\t\"position\": \"Goalkeeper\",\n\t\"otherInfo\": \"good player\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/player/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"player",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "248"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f8-UMP2D+uVBEUst3IM2rL08xzgeDQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:10:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Player successfully created!\",\n    \"player\": {\n        \"id\": 1,\n        \"firstName\": \"Jack\",\n        \"lastName\": \"Dough\",\n        \"age\": \"22\",\n        \"position\": \"Goalkeeper\",\n        \"otherInfo\": \"good player\",\n        \"teamId\": 1,\n        \"updatedAt\": \"2019-05-17T19:10:58.777Z\",\n        \"createdAt\": \"2019-05-17T19:10:58.777Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get player's data",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/manage/player/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"player",
+								"get",
+								"1"
+							]
+						},
+						"description": "Sends a GET request with the id of the player at the end of the URI.\nIt returns a response with the player's information in json format.\n\nThe authentication token is required."
+					},
+					"response": [
+						{
+							"name": "Get player's data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/manage/player/get/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"player",
+										"get",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-OACaiT6L8+mDyNDujGLtZUdLBQE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:15:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Player data successfully retrieved\",\n    \"player\": {\n        \"id\": 1,\n        \"firstName\": \"Jack\",\n        \"lastName\": \"Dough\",\n        \"age\": 22,\n        \"position\": \"Goalkeeper\",\n        \"otherInfo\": \"good player\",\n        \"createdAt\": \"2019-05-17T19:10:58.000Z\",\n        \"updatedAt\": \"2019-05-17T19:10:58.000Z\",\n        \"teamId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit player's data",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Jackson\",\n\t\"lastName\": \"Doug\",\n\t\"age\": \"21\",\n\t\"position\": \"scorrer\",\n\t\"otherInfo\": \"not so good player\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/manage/player/edit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"player",
+								"edit",
+								"1"
+							]
+						},
+						"description": "Sends a PUT request in json format with the new data and the id of the player at the end of the URI.\nThere are no required fields.\n\nThe authentication token is required."
+					},
+					"response": [
+						{
+							"name": "Edit player's data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"Jackson\",\n\t\"lastName\": \"Doug\",\n\t\"age\": \"21\",\n\t\"position\": \"scorrer\",\n\t\"otherInfo\": \"not so good player\"\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/manage/player/edit/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"player",
+										"edit",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "258"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"102-quf9ZTTDRy3+v+grOmzmAALDMWw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:15:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Player data successfully updated\",\n    \"player\": {\n        \"id\": 1,\n        \"firstName\": \"Jackson\",\n        \"lastName\": \"Doug\",\n        \"age\": \"21\",\n        \"position\": \"scorrer\",\n        \"otherInfo\": \"not so good player\",\n        \"createdAt\": \"2019-05-17T19:10:58.000Z\",\n        \"updatedAt\": \"2019-05-17T19:15:49.524Z\",\n        \"teamId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all players",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/manage/player/all?page=2&perpage=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"player",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"description": "get the 2nd page"
+								},
+								{
+									"key": "perpage",
+									"value": "3",
+									"description": "each page contains 3 players"
+								}
+							]
+						},
+						"description": "Sends a get requests that returns a json with all the players that belong to the manager's team.\n\nIt requires the authentication token.\n\nThere is pagination on this response.\nManipulate the pagination by using params:\npage=2 --> returns the second page.\nperpage=3 --> each page contains 3 players."
+					},
+					"response": [
+						{
+							"name": "Get all players",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/manage/player/all?page=2&perpage=3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"player",
+										"all"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "get the 2nd page"
+										},
+										{
+											"key": "perpage",
+											"value": "3",
+											"description": "each page contains 3 players"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "688"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b0-RWAWZ37mtG1yeEfIn73qoaqOwYE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:16:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Fetched players successfully.\",\n    \"players\": [\n        {\n            \"id\": 4,\n            \"firstName\": \"Jason\",\n            \"lastName\": \"Dought\",\n            \"age\": 23,\n            \"position\": \"scorrer\",\n            \"otherInfo\": \"not so good player\",\n            \"createdAt\": \"2019-05-17T19:12:09.000Z\",\n            \"updatedAt\": \"2019-05-17T19:12:09.000Z\",\n            \"teamId\": 1\n        },\n        {\n            \"id\": 5,\n            \"firstName\": \"Julian\",\n            \"lastName\": \"Douh\",\n            \"age\": 23,\n            \"position\": \"scorrer\",\n            \"otherInfo\": \"not so good player\",\n            \"createdAt\": \"2019-05-17T19:12:29.000Z\",\n            \"updatedAt\": \"2019-05-17T19:12:29.000Z\",\n            \"teamId\": 1\n        },\n        {\n            \"id\": 6,\n            \"firstName\": \"Jameson\",\n            \"lastName\": \"Doguh\",\n            \"age\": 21,\n            \"position\": \"scorrer\",\n            \"otherInfo\": null,\n            \"createdAt\": \"2019-05-17T19:12:47.000Z\",\n            \"updatedAt\": \"2019-05-17T19:12:47.000Z\",\n            \"teamId\": 1\n        }\n    ],\n    \"totalItems\": 9,\n    \"currentPage\": 2,\n    \"totalPages\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete player",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/manage/player/delete/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manage",
+								"player",
+								"delete",
+								"5"
+							]
+						},
+						"description": "Sends a DELETE request with the id of the player to be deleted at the end of the URI.\n\nIt requires the authentication token."
+					},
+					"response": [
+						{
+							"name": "Delete player",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9oQHRlc3RtYWlsLmNvbSIsIm1hbmFnZXJJZCI6IjEiLCJpYXQiOjE1NTgxMTk0NTcsImV4cCI6MTU1ODEyMzA1N30.m-m4PvsPl2cPN6Ul7SefzqiLT02ZE4qR7JUaiKOBnLE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/manage/player/delete/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"manage",
+										"player",
+										"delete",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-lIXxtRV87fjfW5AZaW437XTe0wY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2019 19:17:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Player data successfully deleted\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains all the routes that are related to the players",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1cd9f498-ed7a-4b82-831e-3d998541ed78",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bdc6e68f-91fd-42b7-8ada-c7c7e6d58f9e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "047144cb-5c49-4b1a-be3b-25f9019763a3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f1d79b2b-b708-4309-8cac-f6cc33147028",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
