@@ -1,5 +1,5 @@
 # team-manager
-This is an API that helps team managers manage their players with simple CRUD functions.
+This is an API that helps team managers manage their players with CRUD functions.
 
 **_Installation:_**
 1. Install npm from [here](https://www.npmjs.com/get-npm).
